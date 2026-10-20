@@ -1,0 +1,24 @@
+# Root allowlist: only deployable source and assets
+/*
+!/.gitignore
+!/README.md
+!/ASSET_CREDITS.md
+!/index.html
+!/package.json
+!/package-lock.json
+!/tsconfig.json
+!/vite.config.ts
+!/src/
+!/public/
+!/sakura_tree_01_-_low_poly_model.glb
+!/industrial_sunset_puresky_4k.exr
+
+# Generated and machine-local files
+node_modules/
+dist/
+*.log
+*.local
+.env
+.env.*
+!.env.example
+.DS_Store
