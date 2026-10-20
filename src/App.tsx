@@ -81,7 +81,7 @@ export default function App() {
         onSceneReady={() => setSceneReady(true)}
       />
 
-      <audio ref={audioRef} src="/audio/ngon-gio-dem-nay.mp3" preload="auto" loop onPlay={() => setIsMusicOn(true)} onPause={() => setIsMusicOn(false)} />
+      <audio ref={audioRef} src="/audio/ngon-gio-dem-nay.mp3" preload="none" loop onPlay={() => setIsMusicOn(true)} onPause={() => setIsMusicOn(false)} />
       {/* Minimalistic Non-intrusive Overlay (Brand & Audio only) */}
       <UIOverlay
         onEnter={handleEnterHall}

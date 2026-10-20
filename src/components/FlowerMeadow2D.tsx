@@ -8,12 +8,12 @@ function flowerTexture(){
  const canvas=document.createElement('canvas');canvas.width=canvas.height=256
  const c=canvas.getContext('2d')!; c.translate(128,128)
  const glow=c.createRadialGradient(0,0,12,0,0,110)
- glow.addColorStop(0,'rgba(255,224,238,.34)');glow.addColorStop(1,'rgba(255,224,238,0)')
+ glow.addColorStop(0,'rgba(222,161,190,.17)');glow.addColorStop(1,'rgba(255,224,238,0)')
  c.fillStyle=glow;c.fillRect(-128,-128,256,256)
  for(let i=0;i<5;i++){c.save();c.rotate(i*Math.PI*2/5)
- const g=c.createLinearGradient(0,-80,0,0);g.addColorStop(0,'#fff1f7');g.addColorStop(.5,'#f9c5dc');g.addColorStop(1,'#e99aba')
+ const g=c.createLinearGradient(0,-80,0,0);g.addColorStop(0,'#eacbd8');g.addColorStop(.5,'#d9a3b9');g.addColorStop(1,'#c77f9e')
  c.fillStyle=g;c.beginPath();c.moveTo(0,-5);c.bezierCurveTo(-32,-23,-38,-66,-7,-78);c.lineTo(0,-71);c.lineTo(7,-78);c.bezierCurveTo(38,-66,32,-23,0,-5);c.fill();c.restore()}
- c.fillStyle='#fff0b8';c.beginPath();c.arc(0,0,12,0,Math.PI*2);c.fill()
+ c.fillStyle='#e8c797';c.beginPath();c.arc(0,0,12,0,Math.PI*2);c.fill()
  const t=new THREE.CanvasTexture(canvas);t.colorSpace=THREE.SRGBColorSpace;return t
 }
 export function FlowerMeadow2D(){
@@ -21,7 +21,7 @@ export function FlowerMeadow2D(){
  const {camera,pointer,raycaster}=useThree()
  const texture=useMemo(flowerTexture,[])
  const geom=useMemo(()=>new THREE.PlaneGeometry(1,1),[])
- const mat=useMemo(()=>new THREE.MeshBasicMaterial({map:texture,transparent:true,alphaTest:.06,opacity:.88,depthWrite:false,side:THREE.DoubleSide}),[texture])
+ const mat=useMemo(()=>new THREE.MeshBasicMaterial({map:texture,transparent:true,alphaTest:.06,opacity:.76,depthWrite:false,side:THREE.DoubleSide}),[texture])
  const obj=useMemo(()=>new THREE.Object3D(),[])
  const plane=useMemo(()=>new THREE.Plane(new THREE.Vector3(0,1,0),0),[])
  const hit=useMemo(()=>new THREE.Vector3(),[])
@@ -38,7 +38,7 @@ export function FlowerMeadow2D(){
    return{x,z,scale:.42+rand()*.58,phase:rand()*Math.PI*2,tempo:.5+rand()*.4,tilt:(rand()-.5)*.12}
   })
  },[])
- useLayoutEffect(()=>{const m=mesh.current;if(!m)return;const rand=seed(103);const colors=['#fff0f5','#ffdeea','#f5b4d1','#ffe6ef'];flowers.forEach((_,i)=>m.setColorAt(i,new THREE.Color(colors[Math.floor(rand()*colors.length)])));if(m.instanceColor)m.instanceColor.needsUpdate=true},[flowers])
+ useLayoutEffect(()=>{const m=mesh.current;if(!m)return;const rand=seed(103);const colors=['#dfb1c3','#c98ea9','#d7a1b5','#e3b7c7'];flowers.forEach((_,i)=>m.setColorAt(i,new THREE.Color(colors[Math.floor(rand()*colors.length)])));if(m.instanceColor)m.instanceColor.needsUpdate=true},[flowers])
  useFrame(({clock},delta)=>{
   const m=mesh.current;if(!m)return
   raycaster.setFromCamera(pointer,camera);const found=raycaster.ray.intersectPlane(plane,hit)

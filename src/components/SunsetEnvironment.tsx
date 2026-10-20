@@ -1,11 +1,10 @@
 import { useLoader } from '@react-three/fiber'
 import { Environment } from '@react-three/drei'
-import { EXRLoader } from 'three/examples/jsm/loaders/EXRLoader.js'
-import { EquirectangularReflectionMapping } from 'three'
-import sunsetUrl from '../../industrial_sunset_puresky_4k.exr?url'
+import { EquirectangularReflectionMapping, TextureLoader, SRGBColorSpace } from 'three'
 
 export function SunsetEnvironment() {
-  const texture = useLoader(EXRLoader, sunsetUrl)
+  const texture = useLoader(TextureLoader, '/textures/sunset-panorama.webp')
+  texture.colorSpace = SRGBColorSpace
   texture.mapping = EquirectangularReflectionMapping
 
   return (
